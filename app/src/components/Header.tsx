@@ -18,7 +18,7 @@ const Header = ({ onLogout, onUpload, userData }: HeaderProps) => {
                         <h1 className="text-lg font-bold text-gray-800">Vite Media</h1>
                     </div>
 
-                    {userData?.name && <div className="flex items-center">
+                    {userData?.name ? <div className="flex items-center">
                         <button className="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg mr-4 hover:bg-indigo-700" onClick={onUpload}>
                             Upload
                         </button>
@@ -26,6 +26,13 @@ const Header = ({ onLogout, onUpload, userData }: HeaderProps) => {
                             Logout
                         </button>
                     </div>
+                        : <div className="flex items-center">
+                            <a href="/login">
+                                <button className="text-indigo-600 font-bold hover:underline" onClick={onLogout}>
+                                    Login
+                                </button>
+                            </a>
+                        </div>
                     }
                 </nav>
             </div >

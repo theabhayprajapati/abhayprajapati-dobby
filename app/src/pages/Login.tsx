@@ -83,10 +83,10 @@ const Login: React.FC = () => {
                         </div>
 
                         <div className="text-sm">
-                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <a href="/notfound" className="font-medium text-indigo-600 hover:text-indigo-500">
                                 Forgot your password?
                             </a>
-                            w            </div>
+                        </div>
                     </div>
 
                     <div>
@@ -119,7 +119,7 @@ const Login: React.FC = () => {
                 </form>
                 <div className="flex items-center justify-center mt-6">
                     <span className="text-gray-600">Don't have an account yet?</span>
-                    <a href="#" className="ml-2 font-medium text-indigo-600 hover:text-indigo-500">
+                    <a href="/register" className="ml-2 font-medium text-indigo-600 hover:text-indigo-500">
                         Sign up
                     </a>
                 </div>
