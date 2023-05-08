@@ -14,10 +14,9 @@ dotenv.config();
 
 app.use(cookieParser());
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 
 
 const PORT = process.env.PORT || 3000;
@@ -272,4 +271,4 @@ async function main() {
   )
 
 }
-main().then(() => console.log('Application started')).catch(err => { console.error(err) } );
+main().then(() => console.log('Application started')).catch(err => { console.error(err) });
