@@ -1,26 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import ImageUploadModal from "../components/ImageUploadModal";
-const images = [
-    {
-        id: 1,
-        src: `https://picsum.photos/id/${Math.floor(Math.random() * 1000)}/400/300`,
-        title: 'Sunset',
-        description: 'A beautiful sunset at the beach'
-    },
-    {
-        id: 2,
-        src: `https://picsum.photos/id/${Math.floor(Math.random() * 1000)}/400/300`,
-        title: 'Mountains',
-        description: 'A breathtaking view of the mountains'
-    },
-    {
-        id: 3,
-        src: `https://picsum.photos/id/${Math.floor(Math.random() * 1000)}/400/300`,
-        title: 'Cityscape',
-        description: 'A stunning view of the city skyline at night'
-    }
-];
+
 const HomePage: React.FC = () => {
     const [showImageUplaodModal, setShowImageUploadModal] = React.useState<boolean>(false);
     const [userData, setUserData] = React.useState<any>(null);
