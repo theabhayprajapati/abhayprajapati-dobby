@@ -272,4 +272,4 @@ async function main() {
   )
 
 }
-main()
+main().then(() => console.log('Application started')).catch(err => { console.error(err) } );
