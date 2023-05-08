@@ -38,10 +38,8 @@ const router = createBrowserRouter([
     element: <Register />,
     errorElement: <NotFound />,
   }
-], {
-  basename: "/",
-  // basename: "/react-router-dom-examples",
-});
+]
+);
 
 function App() {
   return (
