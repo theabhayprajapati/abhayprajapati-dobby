@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image Upload Test</title>
+</head>
+
+<body>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" />   
+        <br />
+        <button type="submit">Upload</button>
+    </form>
+    <br />
+
+    <div class="" id="images"></div>
+</body>
+<script>
+    //   app.get('/images/owner/:ownerId', async (req, res) => {
+    const ownerId = '123456789';
+    const images = document.getElementById('images');
+    fetch(`/images/owner/${ownerId}`).then(res => res.json()).then(data => {
+        console.log(data);
+        data.images.forEach(image => {
+            const img = document.createElement('img');
+            img.src = image;
+            console.log(image);
+            images.appendChild(img);
+        });
+    });
+
+
+</script>
+
+</html>
