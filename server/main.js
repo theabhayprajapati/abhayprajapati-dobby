@@ -18,9 +18,7 @@ module.exports = (async () => {
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ limit: '50mb', extended: true }));
   app.use(cors());
-
-
-
+  
   const PORT = process.env.PORT || 3000;
   const ENVIRONMENT = process.env.NODE_ENV || 'PROD';
   const SERVER_DOMAIN = 'http://localhost:3000';
@@ -33,14 +31,14 @@ module.exports = (async () => {
     sessions: [{ type: String, required: false }],
   });
 
-  const User = mongoose.model('User', UserSchema);
+  const User =  mongoose.model.User || mongoose.model('User', UserSchema);
   const sessionSchema = new mongoose.Schema({
     sessionId: { type: String, required: true },
     userEmail: { type: String, required: true },
     createdAt: { type: Date, default: Date.now, expires: '1h' }
   });
 
-  const Session = mongoose.model('Session', sessionSchema);
+  const Session = mongoose.model.Session || mongoose.model('Session', sessionSchema);
   // Connect to MongoDB
   const LOCAL_MONGO_URL = 'mongodb://localhost:27017/mydb';
   const MONGO_URL = ENVIRONMENT === 'PROD' ? process.env.MONGO_URL : LOCAL_MONGO_URL;
