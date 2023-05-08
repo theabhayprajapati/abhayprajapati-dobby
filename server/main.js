@@ -4,7 +4,6 @@ const { Readable } = require('stream');
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
-const app = express();
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
@@ -12,49 +11,52 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
-app.use(cookieParser());
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors());
-
-
-
-const PORT = process.env.PORT || 3000;
-const ENVIRONMENT = process.env.NODE_ENV || 'PROD';
-const SERVER_DOMAIN = 'http://localhost:3000';
-
-const UserSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  name: { type: String, required: false },
-  password: { type: String, required: true },
-  images: { type: Array, required: false },
-  sessions: [{ type: String, required: false }],
-});
-
-const User = mongoose.model('User', UserSchema);
-const sessionSchema = new mongoose.Schema({
-  sessionId: { type: String, required: true },
-  userEmail: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now, expires: '1h' }
-});
-
-const Session = mongoose.model('Session', sessionSchema);
-// Connect to MongoDB
-const LOCAL_MONGO_URL = 'mongodb://localhost:27017/mydb';
-const MONGO_URL = ENVIRONMENT === 'PROD' ? process.env.MONGO_URL : LOCAL_MONGO_URL;
-mongoose.connect(MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', function () {
-  console.log('MongoDB connected!');
-});
 
 
 // ASYNC FUNCTION TO UPLOAD FILE
 async function main() {
+  const app = express();
+
+  app.use(cookieParser());
+  app.use(express.json({ limit: '50mb' }));
+  app.use(express.urlencoded({ limit: '50mb', extended: true }));
+  app.use(cors());
+
+
+
+  const PORT = process.env.PORT || 3000;
+  const ENVIRONMENT = process.env.NODE_ENV || 'PROD';
+  const SERVER_DOMAIN = 'http://localhost:3000';
+
+  const UserSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    name: { type: String, required: false },
+    password: { type: String, required: true },
+    images: { type: Array, required: false },
+    sessions: [{ type: String, required: false }],
+  });
+
+  const User = mongoose.model('User', UserSchema);
+  const sessionSchema = new mongoose.Schema({
+    sessionId: { type: String, required: true },
+    userEmail: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now, expires: '1h' }
+  });
+
+  const Session = mongoose.model('Session', sessionSchema);
+  // Connect to MongoDB
+  const LOCAL_MONGO_URL = 'mongodb://localhost:27017/mydb';
+  const MONGO_URL = ENVIRONMENT === 'PROD' ? process.env.MONGO_URL : LOCAL_MONGO_URL;
+  mongoose.connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  const db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+  db.once('open', function () {
+    console.log('MongoDB connected!');
+  });
+
   const storage = multer.memoryStorage();
   const url = ENVIRONMENT === 'PROD' ? process.env.MONGO_URL : 'mongodb://localhost:27017';
   const dbName = 'mydb';
@@ -264,8 +266,12 @@ async function main() {
     console.log('Server listening on port 3000');
   }
   )
-
+  return app;
 }
-main().then(() => console.log('Application started')).catch(err => { console.error(err) });
 
-export default app;
+main().catch((err) => {
+  console.log('Error starting server:', err.message);
+});
+
+module.exports = main;
+
