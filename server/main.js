@@ -12,11 +12,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
-
-// ASYNC FUNCTION TO UPLOAD FILE
-async function main() {
+module.exports = (async () => {
   const app = express();
-
   app.use(cookieParser());
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -251,7 +248,7 @@ async function main() {
   });
 
   app.get('/', async (req, res) => {
-    if (req.session.userId && req.session.userEmail) {
+    if (req.session?.userId && req.session?.userEmail) {
       console.log('User is logged in');
       res.send('User is logged in');
     } else {
@@ -265,13 +262,6 @@ async function main() {
   app.listen(PORT, () => {
     console.log('Server listening on port 3000');
   }
-  )
-  return app;
-}
-
-main().catch((err) => {
-  console.log('Error starting server:', err.message);
-});
-
-module.exports = main;
+  );
+})();
 
