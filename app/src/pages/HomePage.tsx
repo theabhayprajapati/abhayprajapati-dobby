@@ -102,8 +102,8 @@ const HomePage: React.FC = () => {
                 <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {
-                            userData?.name && userData?.images.map((image, index) => (
-                                <ImageCard key={index} src={image}  alt={image} width={400} height={300} />
+                            userData?.name && userData?.images.map((image: any, index: number) => (
+                                <ImageCard key={index} src={image} alt={image} width={400} height={300} />
                             ))
 
                         }

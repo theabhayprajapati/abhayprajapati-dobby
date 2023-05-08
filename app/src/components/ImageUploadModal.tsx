@@ -1,3 +1,4 @@
+/*  */
 import React, { useState } from "react";
 import { SERVER_URL } from "../constants/main";
 
@@ -65,7 +66,10 @@ const ImageUploadModal: React.FC<ImageUploadModalProps> = ({ isOpen, onClose }) 
                             <input type="file" onChange={handleFileInputChange} className="hidden" />
                             <button
                                 className="bg-indigo-500 text-white py-2 px-4 rounded-lg mr-4 hover:bg-indigo-600 focus:outline-none"
-                                onClick={() => document.querySelector("input[type=file]")?.click()}
+                                onClick={() => {
+                                    // @ts-ignore
+                                    return document.querySelector("input[type=file]")?.click()
+                                }}
                             >
                                 Select Image
                             </button>

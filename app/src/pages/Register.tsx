@@ -5,7 +5,7 @@ const Register: React.FC = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         fetch(BACKEND_URL, {
             method: "POST",
@@ -17,6 +17,7 @@ const Register: React.FC = () => {
                 console.log(response.status);
                 if (response.status === 200) {
                     // localStorage.setItem("token", data.token);
+                    console.log(data);
                     window.location.replace("/login");
                 }
             }

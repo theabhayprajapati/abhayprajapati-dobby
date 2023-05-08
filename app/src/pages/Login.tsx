@@ -6,7 +6,7 @@ const Login: React.FC = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         fetch(BACKEND_URL, {
             method: "POST",
@@ -86,7 +86,7 @@ const Login: React.FC = () => {
                             <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                                 Forgot your password?
                             </a>
-                        </div>
+                            w            </div>
                     </div>
 
                     <div>
