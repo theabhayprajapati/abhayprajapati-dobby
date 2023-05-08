@@ -9,6 +9,10 @@ lerna-debug.log*
 /node_modules
 ./node_modules
 node_modules
+
+/app/node_modules
+/server/node_modules
+./server/.env
 dist
 dist-ssr
 *.local
@@ -23,4 +27,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Ignore node modules
+node_modules/
+
+# Ignore client build artifacts
+/app/build/
+
+# Ignore server build artifacts
+/server/build/
+
+# Ignore log files
+*.log
+
+# Ignore environment variables
+.env
+
+# Ignore any local development files
+.local/
 

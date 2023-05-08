@@ -45,3 +45,5 @@ node_modules/
 # Ignore any local development files
 .local/
 
+
+server
