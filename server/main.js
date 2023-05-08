@@ -267,3 +267,5 @@ async function main() {
 
 }
 main().then(() => console.log('Application started')).catch(err => { console.error(err) });
+
+export default app;
