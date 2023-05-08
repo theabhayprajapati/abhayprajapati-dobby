@@ -51,9 +51,9 @@ async function main() {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-  db.once('open', function () {
+  const mDb = mongoose.connection;
+  mDb.on('error', console.error.bind(console, 'MongoDB connection error:'));
+  mDb.once('open', function () {
     console.log('MongoDB connected!');
   });
 
