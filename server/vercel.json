@@ -1,7 +1,4 @@
 {
-  "version": 2,
-  "name": "social_media_app",
-
   "builds": [
     {
       "src": "main.js",
