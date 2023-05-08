@@ -22,12 +22,7 @@ app.use(cors());
 const PORT = process.env.PORT || 3000;
 const ENVIRONMENT = process.env.NODE_ENV || 'PROD';
 const SERVER_DOMAIN = 'http://localhost:3000';
-// Middleware for handling sessions
-app.use(session({
-  secret: 'my-secret',
-  resave: false,
-  saveUninitialized: false
-}));
+
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   name: { type: String, required: false },
